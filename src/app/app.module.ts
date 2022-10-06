@@ -15,6 +15,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { StateButtonComponent } from './add-conditions-button/state-button.component';
+import { CountryEntryComponent } from './country-entry/country-entry.component';
+import { CountryItemComponent } from './country-entry/country-item/country-item.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { StateButtonComponent } from './add-conditions-button/state-button.compo
     ForecastsListComponent,
     CurrentConditionsComponent,
     MainPageComponent,
-    StateButtonComponent
+    StateButtonComponent,
+    CountryEntryComponent,
+    CountryItemComponent
   ],
   imports: [
     BrowserModule,

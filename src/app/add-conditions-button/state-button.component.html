@@ -1,4 +1,4 @@
-<button [disabled]="currentTemplate === savingTemplate || currentTemplate === savedTemplate" (click)="addLocation()">
+<button (click)="addLocation()">
     <ng-container *ngTemplateOutlet="currentTemplate">
     </ng-container>
     <ng-container *ngIf="!currentTemplate">
