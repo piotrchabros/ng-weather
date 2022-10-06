@@ -19,7 +19,7 @@ export class LocationService {
   addLocation(zipcode : string){
     this.locations.push(zipcode);
     localStorage.setItem(LOCATIONS, JSON.stringify(this.locations));
-    this.weatherService.addCurrentConditions(zipcode);
+    this.weatherService.addCurrentConditions(zipcode, true);
   }
 
   removeLocation(zipcode : string){
