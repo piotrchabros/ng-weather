@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { WeatherService } from '../weather.service';
-import { Subscription } from 'rxjs';
+import { pipe, Subscription, timer } from 'rxjs';
 import { LocationService } from '../location.service';
+import { delay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-state-button',
@@ -36,12 +37,18 @@ export class StateButtonComponent implements OnDestroy {
   subscribeToAddedLocation() {
     this.subscription.add(
       this.weatherService.locationAdded$
-        .subscribe((added: boolean) => {
-          if (added) {
-            this.currentTemplate = this.savedTemplate;
-          } else {
-            this.currentTemplate = this.initialTemplate;
-          }
+        .pipe(
+          tap((added: boolean) => {
+            if (added) {
+              this.currentTemplate = this.savedTemplate;
+            } else {
+              this.currentTemplate = this.initialTemplate;
+            }
+          }),
+          delay(500)
+        )
+        .subscribe(() => {
+          this.currentTemplate = this.initialTemplate;
         })
     );
   }

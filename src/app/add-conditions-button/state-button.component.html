@@ -2,15 +2,23 @@
     <ng-container *ngTemplateOutlet="currentTemplate">
     </ng-container>
     <ng-container *ngIf="!currentTemplate">
-        Save
+        <div class="save">
+            Add location
+        </div>
     </ng-container>
 </button>
 <ng-template #save>
-    Save
+    <div class="save">
+        Add location
+    </div>
 </ng-template>
 <ng-template #saving>
-    Saving
+    <div class="save saving">
+        Adding...
+    </div>
 </ng-template>
 <ng-template #saved>
-    Saved
+    <div class="saved">
+        Added
+    </div>
 </ng-template>
