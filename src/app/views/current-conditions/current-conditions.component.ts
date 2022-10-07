@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {WeatherService} from "../weather.service";
-import {LocationService} from "../location.service";
+import {WeatherService} from "../../services/weather.service";
+import {LocationService} from "../../location.service";
 import {Router} from "@angular/router";
 
 @Component({

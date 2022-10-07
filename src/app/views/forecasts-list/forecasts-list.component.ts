@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {WeatherService} from '../weather.service';
+import {WeatherService} from '../../services/weather.service';
 import {ActivatedRoute} from '@angular/router';
+import { Country } from '../../model/country';
 
 @Component({
   selector: 'app-forecasts-list',
@@ -10,13 +11,18 @@ import {ActivatedRoute} from '@angular/router';
 export class ForecastsListComponent {
 
   zipcode: string;
+  countryCode: string;
   forecast: any;
 
   constructor(private weatherService: WeatherService, route : ActivatedRoute) {
     route.params.subscribe(params => {
       this.zipcode = params['zipcode'];
-      weatherService.getForecast(this.zipcode)
-        .subscribe(data => this.forecast = data);
+      this.countryCode = params['countryCode'];
+      console.log(this.countryCode);
+      weatherService.getForecast(this.zipcode, this.countryCode)
+        .subscribe(data => {
+          this.forecast = data
+        });
     });
   }
 }

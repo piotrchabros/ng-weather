@@ -1,8 +1,11 @@
 import { Component, Input, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
-import { WeatherService } from '../weather.service';
+import { WeatherService } from '../../services/weather.service';
 import { pipe, Subscription, timer } from 'rxjs';
-import { LocationService } from '../location.service';
+import { LocationService } from '../../location.service';
 import { delay, tap } from 'rxjs/operators';
+import { ZipCodeService } from '../../services/zip-code.service';
+import { CountrySelectorService } from '../../services/country-selector.service';
+import { Country } from '../../model/country';
 
 @Component({
   selector: 'app-state-button',
@@ -18,20 +21,38 @@ export class StateButtonComponent implements OnDestroy {
   @ViewChild('saved')
   savedTemplate: TemplateRef<any>;
 
-  @Input()
-  zipcode: string;
-
   currentTemplate: TemplateRef<any>;
 
+  private zipcode: string = '';
+  private country: Country;
   private subscription = new Subscription();
 
-  constructor(private service: LocationService, private weatherService: WeatherService) {
+  constructor(private service: LocationService,
+              private countrySelector: CountrySelectorService,
+              private weatherService: WeatherService,
+              private zipcodeService: ZipCodeService) {
+    this.subscribeToZipcode();
+    this.subscribeToCountry();
     this.subscribeToAddedLocation();
   }
 
   addLocation() {
     this.currentTemplate = this.savingTemplate;
-    this.service.addLocation(this.zipcode)
+    this.service.addLocation(this.zipcode, this.country)
+  }
+
+  subscribeToCountry() {
+    this.subscription.add(
+      this.countrySelector.country$
+        .subscribe((country) => this.country = country)
+    );
+  }
+
+  subscribeToZipcode() {
+    this.subscription.add(
+      this.zipcodeService.zipcode$
+        .subscribe((zipcode) => this.zipcode = zipcode)
+    );
   }
 
   subscribeToAddedLocation() {

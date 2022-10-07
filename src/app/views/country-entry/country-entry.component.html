@@ -1,0 +1,7 @@
+<div class="autocomplete">
+    <input #cntr [(ngModel)]="text" (focus)="showAutocomplete = true" (keyup)="filterCountries()" id="myInput" type="text" name="myCountry" placeholder="Country" class="form-control">
+    <div *ngIf="showAutocomplete" class="autocomplete-items">
+        <app-country-item *ngFor="let country of countriesFiltered" [fullText]="country.name" [textPart]="text" (click)="selectCountry(country)">
+        </app-country-item>
+    </div>
+</div>

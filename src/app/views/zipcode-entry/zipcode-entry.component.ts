@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ZipCodeService } from '../../services/zip-code.service';
 
 @Component({
   selector: 'app-zipcode-entry',
@@ -9,9 +10,9 @@ export class ZipcodeEntryComponent {
 
   zipcode: string;
 
-  constructor() { }
+  constructor(private zipCodeService: ZipCodeService) { }
 
   updateZipcode(zipcode: string) {
-    this.zipcode = zipcode;
+    this.zipCodeService.updateZipcode(zipcode);
   }
 }

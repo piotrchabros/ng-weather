@@ -1,0 +1,21 @@
+<div>
+  <div *ngFor="let location of getCurrentConditions()" class="well flex" (click)="showForecast(location.zip)">
+    <div>
+      <h3>{{location.conditions.name}} ({{location.zip}})</h3>
+      <h4>Current conditions: {{location.conditions.weather[0].main}}</h4>
+      <h4>Temperatures today:</h4>
+      <p>
+        Current {{location.conditions.main.temp | number:'.0-0'}}
+        - Max {{location.conditions.main.temp_max | number:'.0-0'}}
+        - Min {{location.conditions.main.temp_min | number:'.0-0'}}
+      </p>
+      <p>
+        <a [routerLink]="['/forecast', location.zip, location.country.code]" >Show 5-day forecast for {{location.conditions.name}}</a>
+      </p>
+    </div>
+    <div>
+      <span class="close" (click)="locationService.removeLocation(location.zip, location.country)">&times;</span>
+      <img [src]="weatherService.getWeatherIcon(location.conditions.weather[0].id)">
+    </div>
+ </div>
+</div>
