@@ -3,6 +3,9 @@ import { CountrySelectorService } from '../../services/country-selector.service'
 import { countries } from '../../data/countries';
 import { Country } from '../../models/country';
 
+const filterCriteria = <T>(text: string, item: T, prop: string) =>
+  item[prop].toLowerCase().includes(text.toLowerCase());
+
 @Component({
   selector: 'app-country-entry',
   templateUrl: './country-entry.component.html',
@@ -26,7 +29,7 @@ export class CountryEntryComponent {
 
   filterCountries() {
     this.countriesFiltered = this.countries
-      .filter(country => country.name.toLowerCase().includes(this.text.toLowerCase()))
+      .filter((country) => filterCriteria<Country>(this.text, country, "name"))
       .slice(0, 5);
   }
 
