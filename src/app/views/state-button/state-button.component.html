@@ -1,8 +1,5 @@
 <button (click)="click()">
+    <ng-content *ngIf="!template"></ng-content>
     <ng-container *ngTemplateOutlet="template">
     </ng-container>
-    <ng-container *ngIf="!template">
-        <div class="save">Add location</div>
-    </ng-container>
 </button>
-

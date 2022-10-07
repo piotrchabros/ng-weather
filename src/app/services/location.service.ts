@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {WeatherService} from "./services/weather.service";
-import { Country } from './models/country';
+import {WeatherService} from "./weather.service";
+import { Country } from '../models/country';
 
 export const LOCATIONS : string = "locations";
 
@@ -18,8 +18,10 @@ export class LocationService {
   }
 
   addLocation(zipcode : string, country: Country){
-    this.locations.push({zipcode, country});
-    localStorage.setItem(LOCATIONS, JSON.stringify(this.locations));
+    if (this.locations.findIndex(loc => loc.zipcode === zipcode && loc.country.code === country.code) === -1) {
+      this.locations.push({ zipcode, country });
+      localStorage.setItem(LOCATIONS, JSON.stringify(this.locations));
+    }
     this.weatherService.addCurrentConditions(zipcode, country);
   }
 

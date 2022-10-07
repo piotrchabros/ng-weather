@@ -1,16 +1,13 @@
-<app-state-button (buttonClicked)="addLocation()" [template]="currentTemplate"></app-state-button>
-<ng-template #save>
-    <div class="save">
-        Add location
-    </div>
-</ng-template>
+<app-state-button (buttonClicked)="addLocation()" [template]="currentTemplate">
+    <ng-content></ng-content>
+</app-state-button>
 <ng-template #saving>
     <div class="save saving">
-        Adding...
+        {{savingText}}
     </div>
 </ng-template>
 <ng-template #saved>
     <div class="saved">
-        Added
+        {{savedText}}
     </div>
 </ng-template>

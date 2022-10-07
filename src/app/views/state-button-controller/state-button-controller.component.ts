@@ -1,7 +1,7 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { Country } from '../../models/country';
 import { Subscription } from 'rxjs';
-import { LocationService } from '../../location.service';
+import { LocationService } from '../../services/location.service';
 import { CountrySelectorService } from '../../services/country-selector.service';
 import { WeatherService } from '../../services/weather.service';
 import { ZipCodeService } from '../../services/zip-code.service';
@@ -23,6 +23,12 @@ export class StateButtonControllerComponent {
   @ViewChild('saved')
   savedTemplate: TemplateRef<any>
 
+  @Input()
+  savingText: string;
+
+  @Input()
+  savedText: string;
+
   currentTemplate: TemplateRef<any>;
 
   private zipcode: string = '';
@@ -40,8 +46,10 @@ export class StateButtonControllerComponent {
   }
 
   addLocation() {
-    this.currentTemplate = this.savingTemplate;
-    this.service.addLocation(this.zipcode, this.country)
+    if (this.zipcode && this.country) {
+      this.currentTemplate = this.savingTemplate;
+      this.service.addLocation(this.zipcode, this.country)
+    }
   }
 
   subscribeToCountry() {

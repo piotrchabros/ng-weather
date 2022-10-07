@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
-import { LocationService } from '../../location.service';
+import { LocationService } from '../../services/location.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

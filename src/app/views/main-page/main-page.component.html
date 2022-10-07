@@ -5,7 +5,11 @@
     <br>
     <app-country-entry></app-country-entry>
     <br><br>
-    <app-state-button-controller></app-state-button-controller>
+    <app-state-button-controller [savingText]="'Adding...'" [savedText]="'Added'">
+      <div class="save">
+        Add location
+      </div>
+    </app-state-button-controller>
   </div>
 
   <app-current-conditions></app-current-conditions>

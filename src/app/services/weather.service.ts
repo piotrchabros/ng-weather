@@ -21,11 +21,13 @@ export class WeatherService {
 
   addCurrentConditions(zip: string, country: Country) {
     const currentConditions = this.currentConditions.value;
-    const condition = currentConditions.find(c => c.zip === zip && c.country === country);
+    const condition = currentConditions.find(c => c.zip === zip && c.country.code === country.code);
     if (!condition) {
       currentConditions.push({zip, country, conditions: undefined});
       this.currentConditions.next(currentConditions);
+      this.locationAdded.next(true);
     }
+    this.locationAdded.next(false);
   }
 
   @polling()
