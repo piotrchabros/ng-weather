@@ -18,7 +18,6 @@ export class ForecastsListComponent {
     route.params.subscribe(params => {
       this.zipcode = params['zipcode'];
       this.countryCode = params['countryCode'];
-      console.log(this.countryCode);
       weatherService.getForecast(this.zipcode, this.countryCode)
         .subscribe(data => {
           this.forecast = data
