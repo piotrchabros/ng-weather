@@ -1,25 +1,27 @@
-import { Component, Input, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
-import { WeatherService } from '../../services/weather.service';
-import { pipe, Subscription, timer } from 'rxjs';
-import { LocationService } from '../../location.service';
-import { delay, tap } from 'rxjs/operators';
-import { ZipCodeService } from '../../services/zip-code.service';
-import { CountrySelectorService } from '../../services/country-selector.service';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Country } from '../../model/country';
+import { Subscription } from 'rxjs';
+import { LocationService } from '../../location.service';
+import { CountrySelectorService } from '../../services/country-selector.service';
+import { WeatherService } from '../../services/weather.service';
+import { ZipCodeService } from '../../services/zip-code.service';
+import { delay, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-state-button',
-  templateUrl: './state-button.component.html',
-  styleUrls: ['./state-button.component.scss'],
+  selector: 'app-state-button-controller',
+  templateUrl: './state-button-controller.component.html',
+  styleUrls: ['./state-button-controller.component.scss']
 })
-export class StateButtonComponent implements OnDestroy {
+export class StateButtonControllerComponent {
 
   @ViewChild('save')
-  initialTemplate: TemplateRef<any>;
+  saveTemplate: TemplateRef<any>;
+
   @ViewChild('saving')
   savingTemplate: TemplateRef<any>;
+
   @ViewChild('saved')
-  savedTemplate: TemplateRef<any>;
+  savedTemplate: TemplateRef<any>
 
   currentTemplate: TemplateRef<any>;
 
@@ -31,6 +33,7 @@ export class StateButtonComponent implements OnDestroy {
               private countrySelector: CountrySelectorService,
               private weatherService: WeatherService,
               private zipcodeService: ZipCodeService) {
+    this.currentTemplate = this.saveTemplate;
     this.subscribeToZipcode();
     this.subscribeToCountry();
     this.subscribeToAddedLocation();
@@ -62,14 +65,12 @@ export class StateButtonComponent implements OnDestroy {
           tap((added: boolean) => {
             if (added) {
               this.currentTemplate = this.savedTemplate;
-            } else {
-              this.currentTemplate = this.initialTemplate;
             }
           }),
           delay(500)
         )
         .subscribe(() => {
-          this.currentTemplate = this.initialTemplate;
+          this.currentTemplate = this.saveTemplate;
         })
     );
   }

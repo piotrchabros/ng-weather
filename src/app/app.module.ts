@@ -14,10 +14,11 @@ import { routing } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { StateButtonComponent } from './views/add-conditions-button/state-button.component';
+import { StateButtonComponent } from './views/state-button/state-button.component';
 import { CountryEntryComponent } from './views/country-entry/country-entry.component';
 import { CountryItemComponent } from './views/country-entry/country-item/country-item.component';
 import { HighlighterPipe } from './pipes/highlighter.pipe';
+import { StateButtonControllerComponent } from './views/state-button-controller/state-button-controller.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HighlighterPipe } from './pipes/highlighter.pipe';
     StateButtonComponent,
     CountryEntryComponent,
     CountryItemComponent,
-    HighlighterPipe
+    HighlighterPipe,
+    StateButtonControllerComponent
   ],
   imports: [
     BrowserModule,

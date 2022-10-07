@@ -1,12 +1,4 @@
-<button (click)="addLocation()">
-    <ng-container *ngTemplateOutlet="currentTemplate">
-    </ng-container>
-    <ng-container *ngIf="!currentTemplate">
-        <div class="save">
-            Add location
-        </div>
-    </ng-container>
-</button>
+<app-state-button (buttonClicked)="addLocation()" [template]="currentTemplate"></app-state-button>
 <ng-template #save>
     <div class="save">
         Add location
