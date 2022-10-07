@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { CountrySelectorService } from '../../services/country-selector.service';
 import { countries } from '../../data/countries';
-import { Country } from '../../model/country';
+import { Country } from '../../models/country';
 
 @Component({
   selector: 'app-country-entry',

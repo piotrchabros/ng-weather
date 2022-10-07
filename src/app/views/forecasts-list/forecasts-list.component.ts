@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {WeatherService} from '../../services/weather.service';
 import {ActivatedRoute} from '@angular/router';
-import { Country } from '../../model/country';
+import { Country } from '../../models/country';
 
 @Component({
   selector: 'app-forecasts-list',

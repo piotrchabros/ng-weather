@@ -1,5 +1,5 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { Country } from '../../model/country';
+import { Country } from '../../models/country';
 import { Subscription } from 'rxjs';
 import { LocationService } from '../../location.service';
 import { CountrySelectorService } from '../../services/country-selector.service';
