@@ -1,5 +1,5 @@
 <div>
-  <div *ngFor="let observable of observables" class="well flex">
+  <div *ngFor="let observable of observables">
     <app-conditions-card [location]="observable" (closeEvent)="removeLocation($event)"></app-conditions-card>
  </div>
 </div>
