@@ -19,6 +19,7 @@ import { CountryEntryComponent } from './views/country-entry/country-entry.compo
 import { CountryItemComponent } from './views/country-entry/country-item/country-item.component';
 import { HighlighterPipe } from './pipes/highlighter.pipe';
 import { StateButtonControllerComponent } from './views/state-button-controller/state-button-controller.component';
+import { ConditionsCardComponent } from './views/current-conditions/conditions-card/conditions-card.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StateButtonControllerComponent } from './views/state-button-controller/
     CountryEntryComponent,
     CountryItemComponent,
     HighlighterPipe,
-    StateButtonControllerComponent
+    StateButtonControllerComponent,
+    ConditionsCardComponent
   ],
   imports: [
     BrowserModule,

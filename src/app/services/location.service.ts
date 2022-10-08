@@ -26,7 +26,7 @@ export class LocationService {
   }
 
   removeLocation(zipcode : string, country: Country){
-    let index = this.locations.findIndex(loc => loc.zipcode === zipcode && loc.country.code === country.code)
+    let index = this.locations.findIndex(loc => loc.zipcode === zipcode && loc.country.code === country.code);
     if (index !== -1){
       this.locations.splice(index, 1);
       localStorage.setItem(LOCATIONS, JSON.stringify(this.locations));
