@@ -16,7 +16,7 @@ export class CurrentConditionsComponent implements OnDestroy {
 
   private subscription = new Subscription();
 
-  observables: {zip: string, country: Country, observable: Observable<any>}[] = [];
+  locations: {zip: string, country: Country, observable: Observable<any>}[] = [];
 
   constructor(public weatherService: WeatherService,
               public locationService: LocationService) {
@@ -26,9 +26,9 @@ export class CurrentConditionsComponent implements OnDestroy {
   subscribeToWeather() {
     this.subscription.add(this.weatherService.getCurrentConditions()
       .subscribe((conditions: Conditions[]) => {
-        this.observables.splice(0, this.observables.length);
+        this.locations.splice(0, this.locations.length);
         conditions.forEach(condition => {
-          this.observables.push({
+          this.locations.push({
             zip: condition.zip,
             country: condition.country,
             observable: this.weatherService.loadCurrentConditions(condition.zip, condition.country)

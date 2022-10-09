@@ -1,5 +1,5 @@
 <div>
-  <div *ngFor="let observable of observables">
+  <div *ngFor="let observable of locations">
     <app-conditions-card [location]="observable" (closeEvent)="removeLocation($event)"></app-conditions-card>
  </div>
 </div>
